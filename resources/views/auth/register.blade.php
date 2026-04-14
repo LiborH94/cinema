@@ -1,6 +1,10 @@
 <x-layout>
-    <form>
-        <label for=""></label>
-        <input class="border" type="text">
+    <form class="p-6" action="{{route('register')}}" method="POST">
+        @csrf
+        <x-form.input name="name" label="Name"/>
+        <x-form.input name="email" label="Email" type="email"/>
+        <x-form.input name="password" label="Password" type="password"/>
+        <x-form.input name="password_confirmation" label="Password again" type="password" />
+        <x-form.button>Create</x-form.button>
     </form>
 </x-layout>

@@ -1,7 +1,7 @@
 <nav class="flex justify-between items-center bg-gray-900 h-20 p-8">
     <div>
         <a href="">
-            <h2 class="text-3xl font-bold">Divadlo</h2>
+            <h2 class="text-3xl font-bold">Kino</h2>
         </a>
     </div>
     <div class="flex text-center justify-center">
