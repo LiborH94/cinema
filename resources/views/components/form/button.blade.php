@@ -3,10 +3,10 @@
 <button
     type="{{ $type }}"
     {{ $attributes->merge([
-        'class' => 'bg-gray-400 px-6 py-3 rounded-lg font-bold transition-all duration-200
-                   transform hover:scale-[1.02] active:scale-95 shadow-lg hover:bg-gray-500
-                   flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed
-                   cursor-pointer'
+        'class' => 'bg-amber-500 text-black px-8 py-3 rounded-xl font-black uppercase tracking-widest
+                    transition-all duration-200 shadow-[0_0_20px_rgba(245,158,11,0.2)]
+                    hover:bg-amber-400 hover:scale-[1.03] hover:shadow-[0_0_25px_rgba(245,158,11,0.4)]
+                    active:scale-95 cursor-pointer outline-none'
     ]) }}
 >
     {{ $slot }}

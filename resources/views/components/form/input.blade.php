@@ -6,9 +6,9 @@
     'value' => ''
 ])
 
-<div class="mb-5 text-center">
+<div class="mb-5"> {{-- Odstranil jsem text-center, inputy vypadají lépe zarovnané doleva --}}
     @if($label)
-        <label for="{{ $name }}" class="block text-sm font-bold text-gray-600 mb-2 ml-1">
+        <label for="{{ $name }}" class="block text-sm font-semibold mb-2 ml-1 text-slate-400 uppercase tracking-wider">
             {{ $label }}
         </label>
     @endif
@@ -20,9 +20,11 @@
         value="{{ old($name, $value) }}"
         placeholder="{{ $placeholder }}"
         {{ $attributes->merge([
-            'class' => 'w-100 px-4 py-2.5 border border-gray-700 rounded-lg
-                       outline-none transition duration-150 ease-in-out
-                       focus:border-stone-500 focus:ring-2 focus:ring-stone-500/20 shadow-inner'
+            'class' => 'bg-slate-950 text-gray-200 w-full px-4 py-3 border border-slate-800 rounded-xl
+                       outline-none transition-all duration-200
+                       placeholder:text-slate-600
+                       focus:border-amber-500/50 focus:ring-4 focus:ring-amber-500/10
+                       focus:scale-[1.01] shadow-2xl'
         ]) }}
     >
 
