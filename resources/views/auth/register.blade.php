@@ -1,5 +1,5 @@
 <x-layout>
-    <x-card title="Registrujte se">
+    <x-ui.card title="Registrujte se">
         <form class="p-6" action="{{route('register')}}" method="POST">
             @csrf
             <x-form.input name="name" label="Jméno"/>
@@ -10,5 +10,5 @@
                 <x-form.button>Registrovat se</x-form.button>
             </div>
         </form>
-    </x-card>
+    </x-ui.card>
 </x-layout>

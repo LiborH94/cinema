@@ -1,9 +1,9 @@
-<nav class="flex justify-between items-center text-slate-300 bg-slate-800 backdrop-blur-md border-b border-slate-800
+<nav class="flex justify-between items-center text-slate-300 bg-slate-950 backdrop-blur-md border-b border-slate-800
 h-20 px-12 sticky top-0 z-50">
     <div>
         <a href="{{route('home')}}" class="group">
             <h2 class="text-3xl font-black text-white tracking-tighter group-hover:text-amber-500 transition-colors">
-                KINO<span class="text-amber-500 group-hover:text-white">.</span>
+                KINO
             </h2>
         </a>
     </div>
@@ -18,8 +18,8 @@ h-20 px-12 sticky top-0 z-50">
         <div class="w-[1px] h-6 bg-white mx-8"></div>
 
         <div class="flex gap-6 font-semibold text-sm uppercase tracking-widest">
-            @can('admin')
-                <a class="text-amber-500 hover:text-amber-400 transition-colors" href="/admin">Admin</a>
+            @can('isAdmin')
+                <a class="text-amber-500 hover:text-amber-400 transition-colors" href="{{route('admin.index')}}">Admin</a>
             @endcan
 
             @guest

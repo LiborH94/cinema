@@ -1,9 +1,9 @@
 @props([
-    'label',
+    'label' => null,
     'name',
-    'type' => 'text',
     'placeholder' => '',
-    'value' => ''
+    'value' => '',
+    'rows' => 4
 ])
 
 <div class="mb-5">
@@ -13,20 +13,19 @@
         </label>
     @endif
 
-    <input
-        type="{{ $type }}"
+    <textarea
         id="{{ $name }}"
         name="{{ $name }}"
-        value="{{ old($name, $value) }}"
+        rows="{{ $rows }}"
         placeholder="{{ $placeholder }}"
         {{ $attributes->merge([
             'class' => 'bg-slate-950 text-gray-200 w-full px-4 py-3 border border-slate-800 rounded-xl
                        outline-none transition-all duration-200
                        placeholder:text-slate-600
                        focus:border-amber-500/50 focus:ring-4 focus:ring-amber-500/10
-                       focus:scale-[1.01] shadow-2xl'
+                       focus:scale-[1.01] shadow-2xl resize-none'
         ]) }}
-    >
+    >{{ old($name, $value) }}</textarea>
 
     @error($name)
     <p class="text-red-500 text-xs mt-2 ml-1 font-medium italic">

@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
         Model::shouldBeStrict();
         Model::automaticallyEagerLoadRelationships();
 
-        Gate::define('admin', function (User $user) {
+        Gate::define('isAdmin', function (User $user) {
            return $user->role === UserRole::ADMIN;
         });
     }

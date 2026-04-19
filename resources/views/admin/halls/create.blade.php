@@ -1,6 +1,5 @@
 <x-layout>
-    <x-card title="Vytvořit sál">
-        <a href="" class="">zpět</a>
+    <x-ui.card title="Vytvořit sál">
         <form
             action="{{route('admin.halls.store')}}"
             method="POST"
@@ -14,5 +13,5 @@
                 <x-form.button>Uložit</x-form.button>
             </div>
         </form>
-    </x-card>
+    </x-ui.card>
 </x-layout>

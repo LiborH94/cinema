@@ -1,5 +1,5 @@
 <x-layout>
-    <x-card title="Přihlaste se">
+    <x-ui.card title="Přihlaste se">
         <form class="p-6" action="{{route('login')}}" method="POST">
             @csrf
             <x-form.input name="email" label="Email" type="email"/>
@@ -8,6 +8,6 @@
                 <x-form.button>Přihlásit se</x-form.button>
             </div>
         </form>
-    </x-card>
+    </x-ui.card>
 
 </x-layout>

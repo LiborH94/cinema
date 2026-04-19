@@ -1,18 +1,14 @@
 <x-layout>
-    <div class="p-6">
-        @if($halls->count())
-            @foreach($halls as $hall)
-                <div>
-                    <h2>{{$hall->name}}</h2>
-                </div>
-            @endforeach
+    <x-ui.card title="Přehled sálů">
+        @if(!$halls->count())
+            <h2 class="text-center text-xl font-bold">Zatím zde nejsou žádné položky</h2>
         @else
-            <div>
-                <p>Žádné sály</p>
-            </div>
+            @foreach($halls as $hall)
+                <h2>{{$hall->name}}</h2>
+            @endforeach
         @endif
-        <div>
-            <a href="{{route('admin.halls.create')}}">Vytvořit nový sál</a>
+        <div class="p-4">
+            <x-ui.link href="{{route('admin.halls.create')}}">Vytvořit nový sál</x-ui.link>
         </div>
-    </div>
+    </x-ui.card>
 </x-layout>
