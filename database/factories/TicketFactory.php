@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Hall;
+use App\Models\Ticket;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Hall>
+ * @extends Factory<Ticket>
  */
-class HallsFactory extends Factory
+class TicketFactory extends Factory
 {
     /**
      * Define the model's default state.

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\HallController;
 use App\Http\Controllers\Admin\MovieController as AdminMovieController;
+use App\Http\Controllers\Admin\PlayController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
@@ -32,7 +33,11 @@ Route::prefix('admin')->group(function () {
     Route::get('/movies', [AdminMovieController::class, 'index'])->name('admin.movies.index');
     Route::get('/movies/create', [AdminMovieController::class, 'create'])->name('admin.movies.create');
     Route::post('/movies', [AdminMovieController::class, 'store'])->name('admin.movies.store');
+    Route::get('/movies/{movie}', [AdminMovieController::class, 'show'])->name('admin.movies.show');
+    Route::get('/movies/{movie}/edit', [AdminMovieController::class, 'edit'])->name('admin.movies.edit');
+    Route::patch('/movies/{movie}', [AdminMovieController::class, 'update'])->name('admin.movies.update');
+    Route::delete('/movies/{movie}', [AdminMovieController::class, 'destroy'])->name('admin.movies.delete');
     // plays
-    Route::get('/plays', [\App\Http\Controllers\Admin\PlayController::class, 'index'])->name('admin.plays.index');
+    Route::get('/plays', [PlayController::class, 'index'])->name('admin.plays.index');
 });
 

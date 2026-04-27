@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Halls extends Model
+class Hall extends Model
 {
     /** @use HasFactory<\Database\Factories\HallsFactory> */
     use HasFactory;
@@ -21,6 +21,6 @@ class Halls extends Model
     }
     public function seats(): HasMany
     {
-        return $this->hasMany(Seats::class);
+        return $this->hasMany(Seat::class);
     }
 }

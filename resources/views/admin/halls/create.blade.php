@@ -7,10 +7,10 @@
         >
             @csrf
             <x-form.input name="name" label="Název sálu"/>
-            <x-form.input name="rows_count" label="Počet řad"/>
-            <x-form.input name="columns_count" label="Počet sedadel v řadě" />
+            <x-form.input class="max-w-30" name="rows_count" type="number" min="1" label="Počet řad"/>
+            <x-form.input class="max-w-30" name="columns_count" type="number" min="1" label="Počet sedadel v řadě" />
             <div class="flex justify-center mt-6">
-                <x-form.button>Uložit</x-form.button>
+                <x-form.button type="submit">Uložit</x-form.button>
             </div>
         </form>
     </x-ui.card>

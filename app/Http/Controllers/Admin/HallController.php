@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Halls;
+use App\Http\Requests\StoreHallsRequest;
+use App\Models\Hall;
+use App\Models\Seat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -18,7 +20,7 @@ class HallController extends Controller
             abort(404);
         }
 
-        $halls = Halls::all();
+        $halls = Hall::all();
 
         return view('admin.halls.index', [
             'halls' => $halls,
@@ -39,17 +41,43 @@ class HallController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreHallsRequest $request)
     {
-        //
+        if (!Gate::allows('isAdmin')) {
+            abort(404);
+        }
+        $hall = Hall::create($request->validated());
+        $seats = [];
+        for ($i = 1; $i <= $request->rows_count; $i ++) {
+            for ($j = 1; $j <= $request->columns_count; $j ++) {
+                $seats[] = [
+                    'hall_id' => $hall->id,
+                    'row' => $i,
+                    'column' => $j,
+                ];
+            }
+        }
+        Seat::insert($seats);
+        return redirect()->route('admin.halls.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Hall $hall)
     {
-        //
+        if (!Gate::allows('isAdmin')) {
+            abort(404);
+        }
+        $seats = $hall->seats()
+            ->orderBy('row', 'desc')
+            ->orderBy('column')
+            ->get()
+            ->groupBy('row');
+        return view('admin.halls.show', [
+            'hall' => $hall,
+            'rows' => $seats,
+        ]);
     }
 
     /**

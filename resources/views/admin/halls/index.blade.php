@@ -4,7 +4,7 @@
             <h2 class="text-center text-xl font-bold">Zatím zde nejsou žádné položky</h2>
         @else
             @foreach($halls as $hall)
-                <h2>{{$hall->name}}</h2>
+                <h2><a href="{{route('admin.halls.show', $hall)}}">{{$hall->name}}</a></h2>
             @endforeach
         @endif
         <div class="p-4">
