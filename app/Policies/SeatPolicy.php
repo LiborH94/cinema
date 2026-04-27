@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Seats;
+use App\Models\Seat;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class SeatsPolicy
+class SeatPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class SeatsPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Seats $seats): bool
+    public function view(User $user, Seat $seats): bool
     {
         return false;
     }
@@ -35,7 +35,7 @@ class SeatsPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Seats $seats): bool
+    public function update(User $user, Seat $seats): bool
     {
         return false;
     }
@@ -43,7 +43,7 @@ class SeatsPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Seats $seats): bool
+    public function delete(User $user, Seat $seats): bool
     {
         return false;
     }
@@ -51,7 +51,7 @@ class SeatsPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Seats $seats): bool
+    public function restore(User $user, Seat $seats): bool
     {
         return false;
     }
@@ -59,7 +59,7 @@ class SeatsPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Seats $seats): bool
+    public function forceDelete(User $user, Seat $seats): bool
     {
         return false;
     }

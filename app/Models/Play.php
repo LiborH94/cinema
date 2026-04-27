@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Plays extends Model
+class Play extends Model
 {
     /** @use HasFactory<\Database\Factories\PlaysFactory> */
     use HasFactory;
@@ -20,10 +20,10 @@ class Plays extends Model
 
     public function hall(): BelongsTo
     {
-        return $this->belongsTo(Halls::class);
+        return $this->belongsTo(Hall::class);
     }
     public function movie(): BelongsTo
     {
-        return $this->belongsTo(Movies::class);
+        return $this->belongsTo(Movie::class);
     }
 }

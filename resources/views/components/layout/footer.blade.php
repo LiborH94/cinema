@@ -6,7 +6,7 @@
                 Kino
             </h3>
             <p class="text-sm leading-relaxed mb-4">
-                Váš prostor pro nejlepší filmové zážitky v srdci města. Promítáme každý den od 14:00.
+                Váš prostor pro nejlepší filmové zážitky. Promítáme každý den.
             </p>
         </div>
 
@@ -26,8 +26,8 @@
             <p class="text-sm italic">recepce@kino.cz</p>
         </div>
     </div>
-
-    <div class="flex items-center max-w-7xl mx-auto pt-8 border-t border-slate-900 text-xs flex-col
+    <x-ui.line />
+    <div class="flex items-center max-w-7xl mx-auto text-xs flex-col
     md:flex-row justify-center gap-4">
         <p>&copy; 2026 Kino. Všechna práva vyhrazena.</p>
     </div>
