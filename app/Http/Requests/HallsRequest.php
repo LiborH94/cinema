@@ -5,7 +5,11 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
+<<<<<<<< HEAD:app/Http/Requests/HallsRequest.php
 class HallsRequest extends FormRequest
+========
+class StoreHallsRequest extends FormRequest
+>>>>>>>> origin/master:app/Http/Requests/StoreHallsRequest.php
 {
     /**
      * Determine if the user is authorized to make this request.
