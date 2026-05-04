@@ -1,43 +1,43 @@
 <x-layout>
-    <x-ui.card title="Přehled sálů">
-        @if($halls->isEmpty())
+    <x-ui.card title="Přehled představení">
+        @if($plays->isEmpty())
             <div class="p-8 text-center">
-                <h2 class="text-xl font-bold text-gray-500">Zatím zde nejsou žádné položky</h2>
+                <h2 class="text-xl font-bold text-gray-500">Zatím zde nejsou žádné představení</h2>
             </div>
         @else
             <div class="overflow-x-auto">
                 <table class="w-full text-left">
                     <thead class="bg-slate-800 border-b border-b-gray-600">
                     <tr>
-                        <th class="p-4 font-semibold">Název sálu</th>
-                        <th class="p-4 font-semibold text-center ">Kapacita</th>
-                        <th class="p-4 font-semibold text-right">Akce</th>
+                        <th class="p-4 font-semibold">Název filmu</th>
+                        <th class="p-4 font-semibold text-center ">Začátek</th>
+                        <th class="p-4 font-semibold text-right">Počet volných míst</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($halls as $hall)
+                    @foreach($plays as $play)
                         <tr class="border-b border-b-gray-600 hover:bg-slate-700/50 transition">
                             <td class="p-4">
-                                <a href="{{ route('admin.halls.show', $hall) }}" class="text-gray-300
+                                <a href="{{ route('admin.plays.show', $play) }}" class="text-gray-300
                                 hover:text-amber-500 font-medium">
-                                    {{ $hall->name }}
+                                    {{$play->movie->name}}
                                 </a>
                             </td>
                             <td class="p-4 text-center">
-                                <p>{{ $hall->getTotalCapacity() }} sedadel</p>
+                                <p>{{$play->start_time}}</p>
                             </td>
                             <td class="p-4 flex justify-end items-center gap-2">
                                 <x-ui.action-button
-                                    :href="route('admin.halls.show', $hall)"
+                                    :href="route('admin.plays.show', $play)"
                                     class="text-sm"
                                 >Zobrazit
                                 </x-ui.action-button>
                                 <x-ui.action-button
-                                    :href="route('admin.halls.edit', $hall)"
+                                    href=""
                                     class="text-sm"
                                 >Upravit
                                 </x-ui.action-button>
-                                <form action="{{route('admin.halls.destroy', $hall)}}"
+                                <form action=""
                                       method="POST"
                                 >
                                     @csrf
@@ -53,8 +53,8 @@
         @endif
 
         <div class="p-4 border-t border-t-gray-600 bg-slate-850 text-center">
-            <x-ui.action-button :href="route('admin.halls.create')">
-                + Vytvořit nový sál
+            <x-ui.action-button :href="route('admin.plays.create')">
+                + Vytvořit nové představení
             </x-ui.action-button>
         </div>
     </x-ui.card>

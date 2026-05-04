@@ -23,6 +23,11 @@ class Hall extends Model
     {
         return $this->hasMany(Seat::class);
     }
+
+    public function plays(): HasMany
+    {
+        return $this->hasMany(Play::class);
+    }
     public function getSeatingPlan()
     {
         return $this->seats()

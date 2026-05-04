@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('hall_id')->constrained()->cascadeOnDelete();
             $table->integer('row');
             $table->integer('column');
-            $table->string('seat_type')->default(SeatType::STANDARD);
+            $table->string('type')->default(SeatType::STANDARD);
             $table->timestamps();
         });
     }

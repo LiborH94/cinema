@@ -1,6 +1,5 @@
 <x-layout>
     <x-ui.card title="Správa kina">
-
         <nav class="flex gap-4">
             <a href="{{route('admin.movies.index')}}"
                class="flex flex-1 flex-col items-center justify-center p-6 border-2 border-gray-700 rounded-xl
@@ -39,7 +38,7 @@
                 <span class="text-xl font-bold text-gray-300">Sály</span>
             </a>
 
-            <a href="{{route('admin.halls.index')}}"
+            <a href="{{route('admin.plays.index')}}"
                class="flex flex-1 flex-col items-center justify-center p-6 border-2 border-gray-700
                rounded-xl hover:border-amber-500 transition-all group">
                 <span class="mb-2">

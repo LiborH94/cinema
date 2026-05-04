@@ -5,7 +5,7 @@
             <x-form.input name="email" label="Email" type="email"/>
             <x-form.input name="password" label="Heslo" type="password"/>
             <div class="flex justify-center mt-6">
-                <x-form.button>Přihlásit se</x-form.button>
+                <x-ui.action-button>Přihlásit se</x-ui.action-button>
             </div>
         </form>
     </x-ui.card>

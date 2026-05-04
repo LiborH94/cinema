@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Hall;
 use App\Models\Seat;
+use App\SeatType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +20,14 @@ class SeatsFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'hall_id' => Hall::factory(),
+            'row' => 1,
+            'column' => 1,
+            'type' => $this->faker->randomElement([
+                SeatType::STANDARD->value,
+                SeatType::VIP->value,
+                SeatType::DISABLED->value
+            ]),
         ];
     }
 }

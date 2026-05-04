@@ -10,7 +10,7 @@
             <x-form.input class="max-w-30" name="rows_count" type="number" min="1" label="Počet řad"/>
             <x-form.input class="max-w-30" name="columns_count" type="number" min="1" label="Počet sedadel v řadě" />
             <div class="flex justify-center mt-6">
-                <x-form.button type="submit">Uložit</x-form.button>
+                <x-ui.action-button type="submit">Uložit</x-ui.action-button>
             </div>
         </form>
     </x-ui.card>

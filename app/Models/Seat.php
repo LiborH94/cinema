@@ -12,10 +12,17 @@ class Seat extends Model
     /** @use HasFactory<\Database\Factories\SeatsFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'hall_id',
+        'row',
+        'column',
+        'type'
+    ];
+
     public function casts()
     {
         return [
-            'seat_type' => SeatType::class,
+            'type' => SeatType::class,
         ];
     }
 

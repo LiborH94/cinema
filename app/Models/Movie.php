@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Movie extends Model
 {
@@ -14,4 +15,9 @@ class Movie extends Model
         'description',
         'image_path'
     ];
+
+    public function plays(): HasMany
+    {
+        return $this->hasMany(Play::class);
+    }
 }

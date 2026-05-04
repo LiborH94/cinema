@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\HallsRequest;
 use App\Models\Hall;
 use App\Models\Seat;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
+use App\SeatType;
 
 class HallController extends Controller
 {
@@ -48,7 +47,7 @@ class HallController extends Controller
             }
         }
         Seat::insert($seats);
-        return redirect()->route('admin.halls.index');
+        return redirect()->route('admin.halls.index')->with('success', 'Sál byl úspěšně vytvořen!');
     }
 
     /**
@@ -76,16 +75,30 @@ class HallController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(HallsRequest $request, string $id)
+    public function update(HallsRequest $request, Hall $hall)
     {
-        //
-    }
+        $hall->update($request->only('name'));
+        return redirect()->route('admin.halls.show', $hall)
+        ->with('success', 'Sál a jeho rozložení bylo aktualizováno.');
+        }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Hall $hall)
     {
-        //
+        $hall->delete();
+        return redirect()->route('admin.halls.index');
+    }
+    public function toggleSeat(Seat $seat)
+    {
+        $new = match($seat->type) {
+            SeatType::STANDARD => SeatType::VIP,
+            SeatType::VIP      => SeatType::DISABLED,
+            SeatType::DISABLED    => SeatType::STANDARD,
+        };
+        $seat->update(['type' => $new]);
+        return back();
     }
 }

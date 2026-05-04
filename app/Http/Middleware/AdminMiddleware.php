@@ -17,7 +17,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->check() || Gate::denies('isAdmin')) {
+        if (Gate::denies('isAdmin')) {
             abort(404);
         }
 

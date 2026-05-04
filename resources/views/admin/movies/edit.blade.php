@@ -5,7 +5,7 @@
             @method('PATCH')
             <x-form.input name="name" label="Název filmu *" value="{{old('name', $movie->name ?? '')}}"/>
             <x-form.textarea name="description" label="Popis">{{old('description', $movie->description ?? '')}}</x-form.textarea>
-            <x-form.button>Uložit</x-form.button>
+            <x-ui.action-button>Uložit</x-ui.action-button>
         </form>
     </x-ui.card>
 </x-layout>

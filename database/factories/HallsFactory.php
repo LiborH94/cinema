@@ -18,7 +18,9 @@ class HallsFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'rows_count' => $this->faker->numberBetween(1, 20),
+            'columns_count' => $this->faker->numberBetween(1, 20),
         ];
     }
 }

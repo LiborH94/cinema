@@ -7,7 +7,7 @@
             <x-form.input name="password" label="Heslo" type="password"/>
             <x-form.input name="password_confirmation" label="Heslo znovu" type="password" />
             <div class="flex justify-center">
-                <x-form.button>Registrovat se</x-form.button>
+                <x-ui.action-button>Registrovat se</x-ui.action-button>
             </div>
         </form>
     </x-ui.card>

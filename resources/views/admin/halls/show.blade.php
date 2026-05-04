@@ -1,13 +1,21 @@
 <x-layout>
     <x-ui.card title="Plán sálu: {{ $hall->name }}">
         <div class="flex flex-col gap-1 items-center p-8 bg-slate-950">
+            <x-halls.legend />
             @foreach($rows as $rowNumber => $seatsInRow)
                 <div class="flex gap-1 items-center">
                     <span class="text-slate-500 text-xs w-4">{{$rowNumber}}</span>
                     @foreach($seatsInRow as $seat)
-                        <button class="hover:bg-amber-500 w-8 h-8 bg-slate-800 border border-slate-700
-                        text-slate-400 text-xs">
-                            <!-- {{ $seat->column }} -->
+                        @php
+                            $classes = match($seat->type->value) {
+                                'vip' => 'bg-yellow-500',
+                                'disabled' => 'bg-red-800',
+                                default => 'bg-gray-300',
+                            };
+                        @endphp
+                        <button
+                            title="Řada {{ $rowNumber }}, Sedadlo {{ $seat->column }}"
+                            class="w-8 h-8 hover:bg-slate-500/50 border border-slate-700 {{$classes}}">
                         </button>
                     @endforeach
                     <span class="text-slate-500 text-xs w-4 text-right">{{$rowNumber}}</span>
