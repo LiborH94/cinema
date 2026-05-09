@@ -7,11 +7,16 @@
     @vite(['resources/css/app.css'])
     <title>{{ $title }}</title>
 </head>
-<body class="bg-gray-200 min-h-screen flex flex-col">
+
+
+<body
+    class="bg-slate-950 min-h-screen flex flex-col">
     <header>
         <x-layout.nav />
     </header>
-    <main class="min-h-100 grow bg-slate-400">
+    <main
+        class="grow min-h-100 bg-cover bg-center bg-fixed text-gray-300"
+        style="background-image: url('{{asset('images/background.png')}}')">
         {{ $slot }}
     </main>
     <x-layout.footer />

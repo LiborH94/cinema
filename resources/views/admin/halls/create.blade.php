@@ -1,5 +1,8 @@
 <x-layout>
-    <x-ui.card title="Vytvořit sál">
+    <x-ui.card
+        back-url="{{route('admin.halls.index')}}"
+        title="Vytvořit sál"
+    >
         <form
             action="{{route('admin.halls.store')}}"
             method="POST"

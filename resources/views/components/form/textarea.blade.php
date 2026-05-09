@@ -3,7 +3,7 @@
     'name',
     'placeholder' => '',
     'value' => '',
-    'rows' => 4
+    'rows' => 5
 ])
 
 <div class="mb-5">
@@ -22,8 +22,8 @@
             'class' => 'bg-slate-950 text-gray-200 w-full px-4 py-3 border border-slate-800 rounded-xl
                        outline-none transition-all duration-200
                        placeholder:text-slate-600
-                       focus:border-amber-500/50 focus:ring-4 focus:ring-amber-500/10
-                       focus:scale-[1.01] shadow-2xl resize-none'
+                       focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50
+                       focus:scale-[1.01] shadow-2xl'
         ]) }}
     >{{ old($name, $value) }}</textarea>
 

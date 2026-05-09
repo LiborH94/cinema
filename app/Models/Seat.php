@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Seat extends Model
 {
-    /** @use HasFactory<\Database\Factories\SeatsFactory> */
+    /** @use HasFactory<\Database\Factories\SeatFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -26,8 +26,12 @@ class Seat extends Model
         ];
     }
 
-    public function Hall(): BelongsTo
+    public function hall(): BelongsTo
     {
         return $this->belongsTo(Hall::class);
+    }
+    public function ticket(): BelongsTo
+    {
+        return $this->belongsTo(Ticket::class);
     }
 }

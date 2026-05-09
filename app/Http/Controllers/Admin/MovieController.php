@@ -21,9 +21,17 @@ class MovieController extends Controller
     }
     public function store(MoviesRequest $request)
     {
-        $validated = $request->validated();
-        Movie::create($validated);
-        return redirect()->route('admin.movies.index')->with('success', 'Film byl úspěšně přidán!');
+        $request->validated();
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('movies', 'public');
+        }
+
+        Movie::create(
+            $request->only(['name', 'description']) + ['image_path' => $imagePath]
+        );
+        return redirect()->route('admin.movies.index')->with('success', 'Film byl přidán!');
     }
 
     public function show(Movie $movie)

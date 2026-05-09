@@ -1,5 +1,8 @@
 <x-layout>
-    <x-ui.card title="Vytvořit nové představení">
+    <x-ui.card
+        back-url="{{route('admin.plays.index')}}"
+        title="Vytvořit nové představení"
+    >
         <form action="{{ route('admin.plays.store') }}" method="POST" class="flex flex-col gap-4">
             @csrf
 

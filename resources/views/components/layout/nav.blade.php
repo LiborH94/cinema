@@ -15,7 +15,7 @@ h-20 px-12 sticky top-0 z-50">
             <a class="hover:text-amber-500 transition-all duration-200 hover:scale-105" href="">Košík</a>
         </div>
 
-        <div class="w-[1px] h-6 bg-white mx-8"></div>
+        <div class="w-[1px] h-6 bg-slate-500/60 mx-8"></div>
 
         <div class="flex gap-6 font-semibold text-sm uppercase tracking-widest">
             @can('isAdmin')
@@ -31,7 +31,9 @@ h-20 px-12 sticky top-0 z-50">
                 <form action="{{route('logout')}}" method="POST" class="inline">
                     @csrf
                     @method('DELETE')
-                    <button class="hover:text-red-500 transition-colors cursor-pointer uppercase tracking-widest text-sm font-semibold" type="submit">
+                    <button class="hover:text-red-500 transition-colors cursor-pointer uppercase tracking-widest text-sm font-semibold"
+                            type="submit"
+                    >
                         Odhlásit
                     </button>
                 </form>

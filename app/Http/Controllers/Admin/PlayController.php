@@ -7,6 +7,7 @@ use App\Http\Requests\PlaysRequest;
 use App\Models\Hall;
 use App\Models\Movie;
 use App\Models\Play;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PlayController extends Controller
@@ -14,11 +15,30 @@ class PlayController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $plays = Play::all();
+        $selectedDate = $request->query('date', now()->toDateString());
+
+        $plays = Play::query()
+            ->where('start_date', 'like', $selectedDate . '%')
+            ->with(['movie', 'hall'])
+            ->orderBy('start_time')
+            ->get();
+
+        $days = collect(range(0, 14))->map(function ($day) use ($selectedDate) {
+            $date = now()->copy()->addDays($day);
+
+            return [
+                'date' => $date,
+                'formatted' => $date->toDateString(),
+                'active' => $selectedDate === $date->toDateString(),
+            ];
+        });
+
         return view('admin.plays.index', [
-            'plays' => $plays
+            'plays' => $plays,
+            'days' => $days,
+            'selectedDate' => $selectedDate,
         ]);
     }
 
@@ -51,22 +71,6 @@ class PlayController extends Controller
         return view('admin.plays.show', [
             'play' => $play,
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Play $play)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
     }
 
     /**

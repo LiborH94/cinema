@@ -1,7 +1,7 @@
 @props(['href' => null, 'type' => 'default'])
 
 @php
-    $baseClasses = 'inline-flex items-center justify-center border rounded-md p-2 text-sm font-bold
+    $baseClasses = 'inline-flex items-center justify-center border rounded-md px-6 tracking-wide p-2 text-sm font-bold
     transition-all duration-300 ease-in-out hover:scale-105 cursor-pointer';
 
     $themes = [

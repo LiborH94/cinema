@@ -5,7 +5,7 @@ use App\UserRole;
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
 
-it('create new user', function () {
+it('creates new user', function () {
    $user = User::factory()->create([
        'name' => 'John Doe',
        'email' => 'john@kino.cz'
@@ -33,14 +33,14 @@ it('protects admin routes from regular users', function () {
     $user = User::factory()->create(['role' => UserRole::USER]);
 
     $this->actingAs($user)
-        ->get('/admin/plays')
+        ->get('/admin')
         ->assertStatus(404);
 });
 
-it('allows admins to access admin routes', function () {
+it('allows admin to access admin routes', function () {
     $admin = User::factory()->create(['role' => UserRole::ADMIN]);
 
     $this->actingAs($admin)
-        ->get('/admin/plays')
+        ->get('/admin')
         ->assertOk();
 });

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Hall extends Model
 {
-    /** @use HasFactory<\Database\Factories\HallsFactory> */
+    /** @use HasFactory<\Database\Factories\HallFactory> */
     use HasFactory;
     protected $fillable = [
         'name',

@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Movie extends Model
 {
-    /** @use HasFactory<\Database\Factories\MoviesFactory> */
+    /** @use HasFactory<\Database\Factories\MovieFactory> */
     use HasFactory;
     protected $fillable = [
         'name',
         'description',
-        'image_path'
+        'image_path',
+        'image',
     ];
 
     public function plays(): HasMany

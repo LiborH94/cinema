@@ -1,9 +1,12 @@
 <x-layout>
-    <x-ui.card title="Správa kina">
+    <x-ui.card
+        back-url="/"
+        title="Správa kina"
+    >
         <nav class="flex gap-4">
             <a href="{{route('admin.movies.index')}}"
                class="flex flex-1 flex-col items-center justify-center p-6 border-2 border-gray-700 rounded-xl
-               hover:border-amber-500 transition-all group">
+               hover:border-amber-500/50 transition-all group">
                 <span class="mb-2">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -11,7 +14,7 @@
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="size-12 text-gray-500 group-hover:text-amber-500 transition-colors duration-300">
+                        class="size-12 text-gray-500 group-hover:text-amber-500/50 transition-colors duration-300">
                         <path
                             stroke-linecap="round"
                             stroke-linejoin="round"
@@ -23,7 +26,7 @@
 
             <a href="{{route('admin.halls.index')}}"
                class="flex flex-1 flex-col items-center justify-center p-6 border-2 border-gray-700
-               rounded-xl hover:border-amber-500 transition-all group">
+               rounded-xl hover:border-amber-500/50 transition-all group">
                 <span class="mb-2">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +34,7 @@
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="size-12 text-gray-500 group-hover:text-amber-500 transition-colors duration-300">
+                        class="size-12 text-gray-500 group-hover:text-amber-500/50 transition-colors duration-300">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z" />
                     </svg>
                 </span>
@@ -40,7 +43,7 @@
 
             <a href="{{route('admin.plays.index')}}"
                class="flex flex-1 flex-col items-center justify-center p-6 border-2 border-gray-700
-               rounded-xl hover:border-amber-500 transition-all group">
+               rounded-xl hover:border-amber-500/50 transition-all group">
                 <span class="mb-2">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +51,7 @@
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="size-12 text-gray-500 group-hover:text-amber-500 transition-colors duration-300">
+                        class="size-12 text-gray-500 group-hover:text-amber-500/50 transition-colors duration-300">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
                     </svg>
                 </span>

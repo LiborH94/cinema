@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Movie;
+use App\Models\Hall;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Movie>
+ * @extends Factory<Hall>
  */
-class MoviesFactory extends Factory
+class HallFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,7 +19,8 @@ class MoviesFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'description' => $this->faker->text(),
+            'rows_count' => $this->faker->numberBetween(1, 20),
+            'columns_count' => $this->faker->numberBetween(1, 20),
         ];
     }
 }

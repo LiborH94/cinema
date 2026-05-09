@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\HallController;
 use App\Http\Controllers\Admin\MovieController as AdminMovieController;
 use App\Http\Controllers\Admin\PlayController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
@@ -23,6 +24,8 @@ Route::post('/login', [SessionController::class, 'store'])->name('login')->middl
 Route::delete('/logout', [SessionController::class, 'destroy'])->name('logout')->middleware('auth');
 // schedule
 Route::get('/schedule', [MovieController::class, 'index'])->name('schedule');
+// cart
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
 // admin
 Route::middleware([AdminMiddleware::class])
     ->prefix('admin')

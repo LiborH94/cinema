@@ -1,5 +1,8 @@
 <x-layout>
-    <x-ui.card title="Plán sálu: {{ $hall->name }}">
+    <x-ui.card
+        back-url="{{route('admin.halls.index')}}"
+        title="Plán sálu: {{ $hall->name }}"
+    >
         <div class="flex flex-col gap-1 items-center p-8 bg-slate-950">
             <x-halls.legend />
             @foreach($rows as $rowNumber => $seatsInRow)
@@ -24,6 +27,7 @@
             <div class="mt-12 w-200 max-w-md flex flex-col items-center">
                 <div class="h-1 w-full bg-gray-600 rounded-full"></div>
                 <p class="text-md text-slate-600 uppercase tracking-wider mt-3">Plátno</p>
+                <x-ui.action-button :href="route('admin.halls.index')" class="mt-6">Zpět na seznam</x-ui.action-button>
             </div>
 
         </div>

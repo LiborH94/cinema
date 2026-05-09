@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Hall;
+use App\Models\Cart;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Hall>
+ * @extends Factory<Cart>
  */
-class HallsFactory extends Factory
+class CartFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,9 +18,7 @@ class HallsFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'rows_count' => $this->faker->numberBetween(1, 20),
-            'columns_count' => $this->faker->numberBetween(1, 20),
+            //
         ];
     }
 }

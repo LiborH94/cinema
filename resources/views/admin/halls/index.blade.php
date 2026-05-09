@@ -1,5 +1,8 @@
 <x-layout>
-    <x-ui.card title="Přehled sálů">
+    <x-ui.card
+        back-url="{{route('admin.index')}}"
+        title="Přehled sálů"
+    >
         @if($halls->isEmpty())
             <div class="p-8 text-center">
                 <h2 class="text-xl font-bold text-gray-500">Zatím zde nejsou žádné položky</h2>

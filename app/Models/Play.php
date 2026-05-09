@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Play extends Model
 {
-    /** @use HasFactory<\Database\Factories\PlaysFactory> */
+    /** @use HasFactory<\Database\Factories\PlayFactory> */
     use HasFactory;
 
     protected $fillable = [
