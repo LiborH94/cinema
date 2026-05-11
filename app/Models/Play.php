@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,6 +12,10 @@ class Play extends Model
 {
     /** @use HasFactory<\Database\Factories\PlayFactory> */
     use HasFactory;
+
+    use HasUuids;
+    protected $keyType = 'string';
+    public $incrementing = false;
 
     protected $fillable = [
         'movie_id',
@@ -40,6 +45,10 @@ class Play extends Model
     public function hall(): BelongsTo
     {
         return $this->belongsTo(Hall::class);
+    }
+    public function cartItems(): HasMany
+    {
+        return $this->hasMany(CartItem::class);
     }
     public function movie(): BelongsTo
     {

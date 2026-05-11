@@ -13,11 +13,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tickets', function (Blueprint $table) {
-            $table->id();
-            $table->unique(['play_id', 'seat_id']);
-            $table->foreignId('play_id')->constrained('plays')->onDelete('cascade');
+            $table->uuid('id')->primary();
+            $table->unique(['play_uuid', 'seat_id']);
+            $table->foreignUuid('play_id')->constrained('plays')->onDelete('cascade');
             $table->foreignId('seat_id')->constrained('seats')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignUuId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('status')->default(TicketStatus::RESERVED);
             $table->timestamps();
         });

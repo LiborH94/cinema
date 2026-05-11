@@ -7,11 +7,12 @@ use App\Http\Requests\PlaysRequest;
 use App\Models\Hall;
 use App\Models\Movie;
 use App\Models\Play;
-use Carbon\Carbon;
+use App\Traits\CalendarGenerator;
 use Illuminate\Http\Request;
 
 class PlayController extends Controller
 {
+    use CalendarGenerator;
     /**
      * Display a listing of the resource.
      */
@@ -20,20 +21,12 @@ class PlayController extends Controller
         $selectedDate = $request->query('date', now()->toDateString());
 
         $plays = Play::query()
-            ->where('start_date', 'like', $selectedDate . '%')
+            ->whereDate('start_date', $selectedDate)
             ->with(['movie', 'hall'])
             ->orderBy('start_time')
             ->get();
 
-        $days = collect(range(0, 14))->map(function ($day) use ($selectedDate) {
-            $date = now()->copy()->addDays($day);
-
-            return [
-                'date' => $date,
-                'formatted' => $date->toDateString(),
-                'active' => $selectedDate === $date->toDateString(),
-            ];
-        });
+        $days = $this->getCalendarDays($selectedDate);
 
         return view('admin.plays.index', [
             'plays' => $plays,

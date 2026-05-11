@@ -8,6 +8,10 @@
         <span class="text-slate-400 text-sm">VIP</span>
     </div>
     <div class="flex items-center gap-2">
+        <div class="w-4 h-4 rounded bg-green-500"></div>
+        <span class="text-slate-400 text-sm">Právě v košíku</span>
+    </div>
+    <div class="flex items-center gap-2">
         <div class="w-4 h-4 rounded bg-red-800"></div>
         <span class="text-slate-400 text-sm">Nedostupné</span>
     </div>

@@ -10,12 +10,33 @@ h-20 px-12 sticky top-0 z-50">
 
     <div class="flex items-center">
         <div class="flex gap-8 font-semibold text-sm uppercase tracking-widest">
-            <a class="hover:text-amber-500 transition-all duration-200 hover:scale-105" href="{{route('home')}}">Domů</a>
-            <a class="hover:text-amber-500 transition-all duration-200 hover:scale-105" href="{{route('schedule')}}">Program</a>
-            <a class="hover:text-amber-500 transition-all duration-200 hover:scale-105" href="">Košík</a>
+            <a
+                class="hover:text-amber-500 transition-all duration-200 hover:scale-105"
+                href="{{route('home')}}"
+            >
+                Program
+            </a>
+            <a
+                class="hover:text-amber-500 transition-all duration-200 hover:scale-105"
+                href="{{route('cart')}}"
+            >
+                Košík
+                @auth
+                    @php
+                        $count = auth()->user()->totalCartItemsCount();
+                    @endphp
+
+                    @if($count > 0)
+                        <span class="pl-2 h-6 w-6 items-center justify-center  text-sm
+                        font-bold text-gray-300 ">
+                {{ $count }}
+            </span>
+                    @endif
+                @endauth
+            </a>
         </div>
 
-        <div class="w-[1px] h-6 bg-slate-500/60 mx-8"></div>
+        <div class="w-px h-6 bg-slate-500/60 mx-8"></div>
 
         <div class="flex gap-6 font-semibold text-sm uppercase tracking-widest">
             @can('isAdmin')

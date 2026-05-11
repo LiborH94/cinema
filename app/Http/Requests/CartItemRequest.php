@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class PlaysRequest extends FormRequest
+class CartItemRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +23,7 @@ class PlaysRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'movie_id' => ['required', 'string', 'exists:movies,id'],
-            'hall_id' => ['required', 'integer', 'exists:halls,id'],
-            'start_date' => ['required', 'date'],
-            'start_time' => ['required'],
-            'standard_price' => ['required', 'numeric', 'min:10'],
-            'vip_price' => ['required', 'numeric', 'min:10'],
+            'seat_id' => ['required', 'string'],
         ];
     }
 }

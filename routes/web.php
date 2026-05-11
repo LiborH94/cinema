@@ -3,17 +3,16 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\HallController;
 use App\Http\Controllers\Admin\MovieController as AdminMovieController;
-use App\Http\Controllers\Admin\PlayController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\MovieController;
+use App\Http\Controllers\CartItemController;
+use App\Http\Controllers\PlayController;
+use App\Http\Controllers\Admin\PlayController as AdminPlayController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 
-Route::view('/', 'index')->name('home');
-
+Route::get('/', [PlayController::class, 'index'])->name('home');
 // register
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register')->middleware('guest');
 Route::post('/register', [RegisteredUserController::class, 'store'])->name('register')->middleware('guest');
@@ -22,10 +21,14 @@ Route::get('/login', [SessionController::class, 'create'])->name('login')->middl
 Route::post('/login', [SessionController::class, 'store'])->name('login')->middleware('guest');
 // logout
 Route::delete('/logout', [SessionController::class, 'destroy'])->name('logout')->middleware('auth');
-// schedule
-Route::get('/schedule', [MovieController::class, 'index'])->name('schedule');
 // cart
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/cart', [CartItemController::class, 'index'])->name('cart')->middleware('auth');
+// cartItems
+Route::post('/plays/{play}', [CartItemController::class, 'addToCart'])->name('cart.add')->middleware('auth');
+Route::delete('/plays/{play}/remove-seat', [CartItemController::class, 'removeFromCart'])->name('cart.remove');
+// plays
+Route::get('/plays/{play}/order', [PlayController::class, 'showPlayToOrderTickets'])->name('public.plays.showPlayToOrderTickets');
+Route::get('/plays/{play}/details', [PlayController::class, 'showPlayDetails'])->name('public.plays.showPlayDetails');
 // admin
 Route::middleware([AdminMiddleware::class])
     ->prefix('admin')
@@ -50,12 +53,10 @@ Route::middleware([AdminMiddleware::class])
     Route::patch('/movies/{movie}', [AdminMovieController::class, 'update'])->name('admin.movies.update');
     Route::delete('/movies/{movie}', [AdminMovieController::class, 'destroy'])->name('admin.movies.destroy');
     // plays
-    Route::get('/plays', [PlayController::class, 'index'])->name('admin.plays.index');
-    Route::get('/plays/create', [PlayController::class, 'create'])->name('admin.plays.create');
-    Route::post('/plays', [PlayController::class, 'store'])->name('admin.plays.store');
-    Route::get('/plays/{play}', [PlayController::class, 'show'])->name('admin.plays.show');
-    Route::get('/plays/{play}/edit', [PlayController::class, 'edit'])->name('admin.plays.edit');
-    Route::patch('/plays/{play}', [PlayController::class, 'update'])->name('admin.plays.update');
-    Route::delete('/plays/{play}', [PlayController::class, 'destroy'])->name('admin.plays.destroy');
+    Route::get('/plays', [AdminPlayController::class, 'index'])->name('admin.plays.index');
+    Route::get('/plays/create', [AdminPlayController::class, 'create'])->name('admin.plays.create');
+    Route::post('/plays', [AdminPlayController::class, 'store'])->name('admin.plays.store');
+    Route::get('/plays/{play}', [AdminPlayController::class, 'show'])->name('admin.plays.show');
+    Route::delete('/plays/{play}', [AdminPlayController::class, 'destroy'])->name('admin.plays.destroy');
 });
 

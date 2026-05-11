@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MoviesRequest;
 use App\Models\Movie;
-use Illuminate\Support\Facades\Gate;
 
 class MovieController extends Controller
 {
