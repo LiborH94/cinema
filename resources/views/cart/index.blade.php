@@ -1,9 +1,9 @@
 <x-layout>
-    <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto">
         <x-ui.card title="Košík">
             @auth
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="w-full text-left border-collapse bg-slate-900 rounded-xl">
                         <thead>
                         <tr class="border-b border-slate-800 text-slate-400 uppercase text-xs tracking-widest">
                             <th class="px-6 py-4 font-semibold">Představení</th>
@@ -41,10 +41,12 @@
                                         @csrf
                                         @method('DELETE')
                                         <input type="hidden" name="seat_id" value="{{ $item->seat->id }}">
-                                        <button type="submit" class="text-red-500 hover:text-red-400 transition-colors">
+                                        <button type="submit" class="text-red-500 hover:text-red-400 cursor-pointer
+                                        transition-colors">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                            </svg>
+                                            </svg
+                                            >
                                         </button>
                                     </form>
                                 </td>
@@ -59,25 +61,29 @@
                         @endforelse
                         </tbody>
                     </table>
+                </div>
 
                     @if($cartItems->isNotEmpty())
-                        <div class="mt-8 flex flex-col items-end gap-4 border-t border-slate-800 pt-6">
+                        <div class="mt-6 flex flex-col items-end gap-4 border-t border-slate-800 pt-6">
                             <div class="text-xl">
                                 <span class="text-slate-400">Celkem k úhradě:</span>
                                 <span class="text-3xl font-black text-amber-500 ml-4">{{ number_format($totalPrice, 0)
                                 }} Kč</span>
                             </div>
-                            <div class="flex">
-                                <x-ui.action-button :href="route('home')" class="bg-slate-800 text-white">
+                            <div class="flex gap-2">
+                                <x-ui.action-button :href="route('home')">
                                     Pokračovat v nákupu
                                 </x-ui.action-button>
-                                <x-ui.action-button href="#">
-                                    Zaplatit a stáhnout lístky
-                                </x-ui.action-button>
+                                <form action="" method="POST">
+                                    @csrf <!-- TODO: dodělat form -->
+                                    <x-ui.action-button href="">
+                                        Zaplatit a stáhnout vstupenky
+                                    </x-ui.action-button>
+                                </form>
+
                             </div>
                         </div>
                     @endif
-                </div>
             @endauth
         </x-ui.card>
     </div>

@@ -1,9 +1,7 @@
 <x-layout>
     <x-ui.card :title="'Výběr sedadel: ' . $play->movie->name">
         <div class="flex flex-col items-center p-8 bg-slate-950">
-
             <x-halls.legend />
-
             <div class="flex flex-col">
                 @foreach($rows as $rowNumber => $rowSeats)
                     <div class="flex justify-center gap-1">

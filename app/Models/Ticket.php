@@ -14,16 +14,16 @@ class Ticket extends Model
     public $incrementing = false;
 
     protected $fillable = [
+        'user_id',
         'play_id',
         'seat_id',
-        'user_id',
-        'status',
+        'price_paid',
     ];
 
     protected function casts(): array
     {
         return [
-            'status' => TicketStatus::class,
+
         ];
     }
 

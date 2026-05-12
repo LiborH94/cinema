@@ -13,12 +13,12 @@ class CartItemController extends Controller
 {
     public function index()
     {
-        $cartItems = \App\Models\CartItem::where('user_id', auth()->id())
+        $cartItems = CartItem::where('user_id', auth()->id())
             ->with(['play.movie', 'seat'])
             ->get();
 
         $totalPrice = $cartItems->sum(function ($item) {
-            return $item->seat->type === \App\SeatType::VIP
+            return $item->seat->type === SeatType::VIP
                 ? $item->play->vip_price
                 : $item->play->standard_price;
         });
@@ -45,7 +45,6 @@ class CartItemController extends Controller
         $alreadyTaken = CartItem::where('play_id', $play->id)
             ->where('seat_id', $seat->id)
             ->exists();
-
         if ($alreadyTaken) {
             return back()->with('error', 'Toto sedadlo už je rezervované.');
         }

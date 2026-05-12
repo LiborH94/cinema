@@ -12,7 +12,7 @@ use Illuminate\Console\Command;
 class ClearOldCartItems extends Command
 {
     /**
-     * Execute the console command.
+     * deletes seat items from cart after 20 minutes while cart is inactive (no new items)
      */
     public function handle()
     {

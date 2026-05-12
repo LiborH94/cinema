@@ -34,6 +34,12 @@ h-20 px-12 sticky top-0 z-50">
                     @endif
                 @endauth
             </a>
+            <a
+                class="hover:text-amber-500 transition-all duration-200 hover:scale-105"
+                href="{{route('home')}}"
+            >
+                Vstupenky
+            </a>
         </div>
 
         <div class="w-px h-6 bg-slate-500/60 mx-8"></div>

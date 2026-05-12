@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class MoviesSeeder extends Seeder
@@ -12,6 +11,6 @@ class MoviesSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        // TODO: Udělat alespoň 15 filmů do DB přes seeder i s plakátem
     }
 }

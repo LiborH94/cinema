@@ -8,6 +8,7 @@ use App\Http\Controllers\PlayController;
 use App\Http\Controllers\Admin\PlayController as AdminPlayController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\TicketController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,9 @@ Route::get('/cart', [CartItemController::class, 'index'])->name('cart')->middlew
 // cartItems
 Route::post('/plays/{play}', [CartItemController::class, 'addToCart'])->name('cart.add')->middleware('auth');
 Route::delete('/plays/{play}/remove-seat', [CartItemController::class, 'removeFromCart'])->name('cart.remove');
+// tickets
+//TODO: dodělat route na zaplacení(odevzdání) ticketu
+Route::get('/tickets', [TicketController::class, 'index'])->name('public.tickets.index')->middleware('auth');
 // plays
 Route::get('/plays/{play}/order', [PlayController::class, 'showPlayToOrderTickets'])->name('public.plays.showPlayToOrderTickets');
 Route::get('/plays/{play}/details', [PlayController::class, 'showPlayDetails'])->name('public.plays.showPlayDetails');

@@ -19,8 +19,11 @@ class PlayController extends Controller
     {
         $selectedDate = $request->query('date', now()->toDateString());
 
-        $plays = Play::query()
-            ->whereDate('start_date', $selectedDate) // Použij whereDate místo LIKE
+        $plays = Play::where('start_date', '<=', now()->toDateString())
+            ->where(function($query) {
+                $query->where('start_date', '>=', now()->toDateString())
+                    ->orWhere('start_time', '>=', now()->toTimeString());
+            })
             ->with(['movie', 'hall'])
             ->orderBy('start_time')
             ->get();
@@ -49,10 +52,14 @@ class PlayController extends Controller
 
         $soldSeatsIds = $play->tickets->pluck('seat_id')->toArray();
 
-        $myCartItems = $play->cartItems->where('user_id', auth()->id());
+        $myCartItems = $play->cartItems()
+            ->where('user_id', auth()->id())
+            ->with('seat')
+            ->get();
         $myCartSeatsIds = $myCartItems->pluck('seat_id')->toArray();
 
-        $othersCartSeatsIds = $play->cartItems->where('user_id', '!=', auth()->id())
+        $othersCartSeatsIds = $play->cartItems()
+            ->where('user_id', '!=', auth()->id())
             ->pluck('seat_id')
             ->toArray();
 
