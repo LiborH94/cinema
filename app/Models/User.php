@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -24,6 +23,12 @@ class User extends Authenticatable
     protected $keyType = 'string';
     public $incrementing = false;
 
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'role',
+    ];
     /**
      * Get the attributes that should be cast.
      *
@@ -37,6 +42,9 @@ class User extends Authenticatable
             'role' => UserRole::class,
         ];
     }
+    protected $attributes = [
+        'role' => UserRole::USER,
+    ];
     public function totalCartItemsCount(): int
     {
         return CartItem::where('user_id', $this->id)->count();

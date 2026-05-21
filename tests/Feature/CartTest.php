@@ -7,7 +7,7 @@ use App\Models\User;
 use App\SeatType;
 
 it('redirects guests to login page when trying to view cart', function () {
-    $this->get(route('cart'))
+    $this->get(route('public.cart'))
         ->assertRedirect(route('login'));
 });
 
@@ -15,7 +15,7 @@ it('shows the cart page to an authenticated user', function () {
     $user = User::factory()->create();
 
     $this->actingAs($user)
-        ->get(route('cart'))
+        ->get(route('public.cart'))
         ->assertOk();
 });
 
@@ -23,7 +23,7 @@ it('shows an empty cart message when no items are added', function () {
     $user = User::factory()->create();
 
     $this->actingAs($user)
-        ->get(route('cart'))
+        ->get(route('public.cart'))
         ->assertOk()
         ->assertSee('Váš košík je momentálně prázdný.')
         ->assertDontSee('Zaplatit');
@@ -48,7 +48,7 @@ it('displays standard ticket price for standard seat', function () {
     ]);
 
     $this->actingAs($user)
-        ->get(route('cart'))
+        ->get(route('public.cart'))
         ->assertOk()
         ->assertSee('Spider-man')
         ->assertSee('150')
@@ -74,7 +74,7 @@ it('displays vip ticket price for vip seat', function () {
     ]);
 
     $this->actingAs($user)
-        ->get(route('cart'))
+        ->get(route('public.cart'))
         ->assertOk()
         ->assertSee('Spider-man')
         ->assertSee('250')
