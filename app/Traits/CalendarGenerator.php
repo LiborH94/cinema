@@ -2,20 +2,24 @@
 
 namespace App\Traits;
 
-use Illuminate\Support\Collection;
-
 trait CalendarGenerator
 {
-    public function getCalendarDays(string $selectedDate, int $count = 10): Collection
+    private function getCalendarDays($selectedDate)
     {
-        return collect(range(0, $count))->map(function ($day) use ($selectedDate) {
-            $date = now()->addDays($day);
+        $days = [];
+        $startDate = now();
+
+        for ($i = 0; $i < 14; $i++) {
+            $date = $startDate->copy()->addDays($i);
             $formatted = $date->toDateString();
-            return [
+
+            $days[] = [
                 'date' => $date,
                 'formatted' => $formatted,
-                'active' => $selectedDate === $formatted,
+                'active' => $formatted === $selectedDate,
             ];
-        });
+        }
+
+        return $days;
     }
 }

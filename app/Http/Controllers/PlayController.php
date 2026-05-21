@@ -19,11 +19,8 @@ class PlayController extends Controller
     {
         $selectedDate = $request->query('date', now()->toDateString());
 
-        $plays = Play::where('start_date', '<=', now()->toDateString())
-            ->where(function($query) {
-                $query->where('start_date', '>=', now()->toDateString())
-                    ->orWhere('start_time', '>=', now()->toTimeString());
-            })
+        $plays = Play::query()
+            ->whereDate('start_date', $selectedDate)
             ->with(['movie', 'hall'])
             ->orderBy('start_time')
             ->get();
@@ -36,17 +33,10 @@ class PlayController extends Controller
             'selectedDate' => $selectedDate,
         ]);
     }
-    public function showPlayDetails(Play $play)
-    {
-        $play->load(['movie', 'hall']);
-        return view('public.plays.showPlayDetails', [
-            'play' => $play,
-        ]);
-    }
     /**
      * Display the specified resource.
      */
-    public function showPlayToOrderTickets(Play $play)
+    public function show(Play $play)
     {
         $play->load(['hall.seats', 'tickets', 'cartItems']);
 
@@ -56,6 +46,9 @@ class PlayController extends Controller
             ->where('user_id', auth()->id())
             ->with('seat')
             ->get();
+
+        $totalCartPrice = $myCartItems->sum('price');
+
         $myCartSeatsIds = $myCartItems->pluck('seat_id')->toArray();
 
         $othersCartSeatsIds = $play->cartItems()
@@ -63,29 +56,16 @@ class PlayController extends Controller
             ->pluck('seat_id')
             ->toArray();
 
-        $rows = $play->hall->seats->groupBy('row');
+        $rows = $play->hall->getSeatingPlan();
 
-        return view('public.plays.showPlayToOrderTickets', [
+        return view('public.plays.show', [
             'play' => $play,
             'rows' => $rows,
             'soldSeatsIds' => $soldSeatsIds,
             'myCartSeatsIds' => $myCartSeatsIds,
             'othersCartSeatsIds' => $othersCartSeatsIds,
             'myCartItems' => $myCartItems,
+            'totalCartPrice' => $totalCartPrice,
         ]);
-    }
-
-    public function addSeatToCart(CartItemRequest $request, Play $play)
-    {
-        $validated = $request->validated();
-
-
-        CartItem::create([
-            'user_id' => auth()->id(),
-            'play_id' => $play->id,
-            'seat_id' => $validated['seat_id'],
-        ]);
-
-        return back()->with('success', 'Sedadlo přidáno do košíku.');
     }
 }

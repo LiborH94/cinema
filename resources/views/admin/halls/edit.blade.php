@@ -4,8 +4,9 @@
         title="Upravit sál: {{ $hall->name }}"
     >
         <div class="flex flex-col items-center p-8 bg-slate-950">
-            <x-halls.legend />
-
+            <div class="mb-10 w-full flex justify-center">
+                <x-halls.legend />
+            </div>
             @foreach($rows as $rowNumber => $seatsInRow)
                 <div class="flex gap-1 items-center">
                     <span class="text-slate-500 text-xs w-4">{{$rowNumber}}</span>

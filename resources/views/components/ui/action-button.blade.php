@@ -7,6 +7,7 @@
     $themes = [
         'default' => 'bg-slate-950 border-slate-700 text-slate-400 hover:text-amber-500',
         'danger'  => 'bg-slate-950 border-slate-700 text-red-500/60 hover:text-red-500',
+        'amber' => 'text-slate-950 !bg-amber-500 hover:!bg-amber-600 border-none',
         'none'    => ''
     ];
 

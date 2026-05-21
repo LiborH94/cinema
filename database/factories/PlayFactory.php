@@ -23,9 +23,9 @@ class PlayFactory extends Factory
             'movie_id' => Movie::factory(),
             'hall_id' => Hall::factory(),
 
-            'date' => $this->faker->date(),
-            'time' => $this->faker->time('H:i'),
-            'price' => $this->faker->numberBetween(150, 200),
+            'start_date' => $this->faker->date(),
+            'start_time' => $this->faker->time('H:i'),
+            'standard_price' => $this->faker->numberBetween(150, 200),
             'vip_price' => $this->faker->numberBetween(200, 300),
         ];
     }

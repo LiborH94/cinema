@@ -6,26 +6,30 @@
         <form action="{{ route('admin.plays.store') }}" method="POST" class="flex flex-col gap-4">
             @csrf
 
-            <x-form.select
-                name="movie_id"
-                label="Film"
-                :options="$movies->pluck('name', 'id')"
-            />
-            <x-form.select
-                name="hall_id"
-                label="Sál"
-                :options="$halls->pluck('name', 'id')"
-            />
-            <x-form.input
-                label="Datum"
-                name="start_date"
-                type="date"
-            />
-            <x-form.input
-                label="Čas"
-                name="start_time"
-                type="time"
-            />
+            <div class="grid grid-cols-2 gap-4">
+                <x-form.select
+                    name="movie_id"
+                    label="Film"
+                    :options="$movies->pluck('name', 'id')"
+                />
+                <x-form.select
+                    name="hall_id"
+                    label="Sál"
+                    :options="$halls->pluck('name', 'id')"
+                />
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <x-form.input
+                    label="Datum"
+                    name="start_date"
+                    type="date"
+                />
+                <x-form.input
+                    label="Čas"
+                    name="start_time"
+                    type="time"
+                />
+            </div>
             <div class="grid grid-cols-2 gap-4">
                 <x-form.input
                     label="Cena za sedadlo"

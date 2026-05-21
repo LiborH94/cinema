@@ -7,7 +7,7 @@ use App\SeatType;
 use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
-{// TODO: dodělat view ticketů (index) a možnost stáhnout je do PDF
+{
     public function store ()
     {
         $user = auth()->user();
@@ -26,8 +26,8 @@ class CheckoutController extends Controller
                     'play_id' => $item->play->id,
                     'seat_id' => $item->seat->id,
                     'price_paid' => $item->seat->type === SeatType::VIP
-                        ? $item->seat->vip_price
-                        : $item->seat->standard_price,
+                        ? $item->play->vip_price
+                        : $item->play->standard_price,
                 ]);
             }
         });

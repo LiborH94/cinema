@@ -7,8 +7,8 @@ use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
-#[Signature('app:clear-old-cart-items')]
-#[Description('Command description')]
+#[Signature('clear-old-cart-items')]
+#[Description('deletes items from cart while is inactive for 10 minutes')]
 class ClearOldCartItems extends Command
 {
     /**
@@ -16,10 +16,7 @@ class ClearOldCartItems extends Command
      */
     public function handle()
     {
-        $limit = now()->subMinutes(20);
-
-        $deletedCount = CartItem::where('updated_at', '<', $limit)->delete();
-
-        $this->info("Smazáno {$deletedCount} starých položek z košíku.");
+        $limit = now()->subMinutes(10);
+        CartItem::where('updated_at', '<', $limit)->delete();
     }
 }

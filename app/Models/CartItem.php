@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\SeatType;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,6 +23,12 @@ class CartItem extends Model
         'seat_id',
     ];
 
+    public function getPriceAttribute(): int
+    {
+        return $this->seat->type === SeatType::VIP
+            ? $this->play->vip_price
+            : $this->play->standard_price;
+    }
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

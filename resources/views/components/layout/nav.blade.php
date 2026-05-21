@@ -1,70 +1,62 @@
-<nav class="flex justify-between items-center text-slate-300 bg-slate-950 backdrop-blur-md border-b border-slate-800
-h-20 px-12 sticky top-0 z-50">
-    <div>
-        <a href="{{route('home')}}" class="group">
-            <h2 class="text-3xl font-black text-white tracking-tighter group-hover:text-amber-500 transition-colors">
+<nav class="bg-slate-950 border-b border-slate-800 py-4 px-6 md:px-12 sticky top-0 z-50 flex flex-col md:flex-row
+md:justify-between md:items-center text-slate-300 gap-4 md:gap-0 duration-300 transition-all">
+
+    <div class="text-center md:text-left">
+        <a href="{{ route('home') }}" class="group">
+            <h2 class="text-2xl md:text-3xl font-black text-white tracking-tighter group-hover:text-amber-500 transition-colors">
                 KINO
             </h2>
         </a>
     </div>
 
-    <div class="flex items-center">
-        <div class="flex gap-8 font-semibold text-sm uppercase tracking-widest">
-            <a
-                class="hover:text-amber-500 transition-all duration-200 hover:scale-105"
-                href="{{route('home')}}"
-            >
-                Program
+    <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-8 font-semibold text-sm uppercase
+    tracking-widest">
+        <a class="hover:text-amber-500 hover:scale-105 transition-all duration-500 ease-in-out"
+           href="{{ route('home') }}">
+            Program
+        </a>
+        <a class="hover:text-amber-500 hover:scale-105 transition-all duration-500 ease-in-out"
+           href="{{ route('public.cart') }}">
+            Košík
+        </a>
+        <a class="hover:text-amber-500 hover:scale-105 transition-all duration-500 ease-in-out" href="{{ route('public.tickets.index') }}">
+            Vstupenky
+        </a>
+
+        <span class="w-full border-b border-slate-500 md:w-px md:h-6 md:border-r md:border-b-0 shrink-0 my-1
+        md:my-0"></span>
+
+        @can('isAdmin')
+            <a class="md:ml-4 text-amber-500 hover:text-amber-500/80 hover:scale-105 transition-all duration-500
+            ease-in-out" href="{{ route('admin.index') }}">
+                Admin menu
             </a>
-            <a
-                class="hover:text-amber-500 transition-all duration-200 hover:scale-105"
-                href="{{route('cart')}}"
-            >
-                Košík
-                @auth
-                    @php
-                        $count = auth()->user()->totalCartItemsCount();
-                    @endphp
-
-                    @if($count > 0)
-                        <span class="pl-2 h-6 w-6 items-center justify-center  text-sm
-                        font-bold text-gray-300 ">
-                {{ $count }}
-            </span>
-                    @endif
-                @endauth
+        @endcan
+        @auth
+            <a class="md:ml-4 text-gray-300 hover:text-amber-500/80 hover:scale-105 transition-all duration-500
+            ease-in-out" href="{{ route('profile.show', auth()->user()) }}">
+                {{ auth()->user()->name }}
             </a>
-            <a
-                class="hover:text-amber-500 transition-all duration-200 hover:scale-105"
-                href="{{route('home')}}"
-            >
-                Vstupenky
+            <form action="{{ route('logout') }}" method="POST" class="inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="text-red-500 hover:text-red-600 hover:scale-105 transition-all
+                duration-300 cursor-pointer uppercase tracking-widest font-semibold text-sm">
+                    Odhlásit
+                </button>
+            </form>
+        @endauth
+
+        @guest
+            <a class="md:ml-4 hover:text-amber-500 hover:scale-105 transition-all duration-500 ease-in-out" href="{{ route('login') }}">
+                Login
             </a>
-        </div>
-
-        <div class="w-px h-6 bg-slate-500/60 mx-8"></div>
-
-        <div class="flex gap-6 font-semibold text-sm uppercase tracking-widest">
-            @can('isAdmin')
-                <a class="text-amber-500 hover:text-amber-400 transition-colors" href="{{route('admin.index')}}">Admin</a>
-            @endcan
-
-            @guest
-                <a class="hover:text-white px-4 py-1.5 transition-colors" href="{{route('register')}}">Registrace</a>
-                <a class="bg-amber-500 text-black px-4 py-1.5 rounded-lg hover:bg-amber-400 transition-all" href="{{route('login')}}">Login</a>
-            @endguest
-
-            @auth
-                <form action="{{route('logout')}}" method="POST" class="inline">
-                    @csrf
-                    @method('DELETE')
-                    <button class="hover:text-red-500 transition-colors cursor-pointer uppercase tracking-widest text-sm font-semibold"
-                            type="submit"
-                    >
-                        Odhlásit
-                    </button>
-                </form>
-            @endauth
-        </div>
+            <a class="bg-amber-500 text-black px-3 py-1.5 rounded-md hover:bg-amber-600 hover:scale-105 duration-300
+            ease-in-out transition-all"
+               href="{{route('register') }}">
+                Registrace
+            </a>
+        @endguest
     </div>
+
 </nav>

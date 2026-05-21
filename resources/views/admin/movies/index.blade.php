@@ -44,8 +44,7 @@
                         </div>
 
                         <div class="flex gap-2">
-                            <x-ui.action-button :href="route('admin.movies.show', $movie)"
-                                                >
+                            <x-ui.action-button :href="route('admin.movies.show', $movie)">
                                 Upravit / Detail
                             </x-ui.action-button>
                         </div>

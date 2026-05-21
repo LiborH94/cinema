@@ -5,6 +5,16 @@
     >
         <x-layout.calendar-nav :days="$days" route-name="admin.plays.index" />
 
+        <div class="flex justify-between items-center mb-8">
+            <div class="flex flex-col">
+                <h3 class="text-xl font-bold text-stone-200">Seznam představení</h3>
+                <p class="text-sm text-gray-500">Celkem nahraných představení: {{ $plays->count() }}</p>
+            </div>
+            <x-ui.action-button :href="route('admin.plays.create')">
+                + Přidat nové představení
+            </x-ui.action-button>
+        </div>
+
         @if($plays->isEmpty())
             <div class="p-8 text-center">
                 <h2 class="text-xl font-bold text-gray-500">
@@ -84,11 +94,6 @@
                 </table>
             </div>
         @endif
-        <div class="p-4 border-t border-t-gray-600 bg-slate-850 text-center">
-            <x-ui.action-button :href="route('admin.plays.create')">
-                + Vytvořit nové představení
-            </x-ui.action-button>
-        </div>
-
+        <x-ui.line class="my-8" />
     </x-ui.card>
 </x-layout>

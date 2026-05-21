@@ -19,6 +19,14 @@ class Hall extends Model
     {
         return $this->rows_count * $this->columns_count;
     }
+    public function getSeatingPlan()
+    {
+        return $this->seats()
+            ->orderBy('row', 'desc')
+            ->orderBy('column')
+            ->get()
+            ->groupBy('row');
+    }
     public function seats(): HasMany
     {
         return $this->hasMany(Seat::class);
@@ -27,13 +35,5 @@ class Hall extends Model
     public function plays(): HasMany
     {
         return $this->hasMany(Play::class);
-    }
-    public function getSeatingPlan()
-    {
-        return $this->seats()
-            ->orderBy('row', 'desc')
-            ->orderBy('column')
-            ->get()
-            ->groupBy('row');
     }
 }

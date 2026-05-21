@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Ticket;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class TicketPolicy
 {
@@ -13,7 +12,7 @@ class TicketPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return $user->is_admin;
     }
 
     /**

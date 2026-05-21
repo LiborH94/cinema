@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Play;
 use App\Models\Ticket;
-use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Gate;
 
 class TicketController extends Controller
@@ -13,59 +14,59 @@ class TicketController extends Controller
      */
     public function index()
     {
-        Gate::authorize('viewAny', Ticket::class);
-
         $tickets = auth()->user()->tickets()->with(['play.movie', 'seat'])->get();
 
         return view('public.tickets.index', [
             'tickets' => $tickets,
         ]);
     }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Ticket $ticket)
     {
-        //
+        Gate::authorize('view', $ticket);
+        return view('public.tickets.show', [
+            'ticket' => $ticket,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function downloadOne(Ticket $ticket)
     {
-        //
+        Gate::authorize('view', $ticket);
+        $ticket->load(['play.movie', 'seat', 'user']);
+        $pdf = Pdf::loadView('public.tickets.pdf', [
+            'ticket' => $ticket
+        ])
+            ->setOption('isHtml5ParserEnabled', true)
+            ->setOption('isRemoteEnabled', true)
+            ->setOption('defaultFont', 'dejavu sans');
+
+        $filename = 'vstupenka-' . str($ticket->id)->slug() . '.pdf';
+        return $pdf->download($filename);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function downloadAllForPlay(Play $play)
     {
-        //
-    }
+        $tickets = auth()->user()->tickets()
+            ->where('play_id', $play->id)
+            ->with(['seat'])
+            ->get();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        if ($tickets->isEmpty()) {
+            abort(403, 'Na toto představení nemáte žádné vstupenky.');
+        }
+
+        $play->load('movie');
+
+        $pdf = Pdf::loadView('public.tickets.pdf_group', [
+            'play' => $play,
+            'tickets' => $tickets
+        ]);
+
+        $filename = 'vstupenky-' . str($play->movie->name)->slug() . '.pdf';
+
+        return $pdf->download($filename);
     }
 }

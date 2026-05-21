@@ -1,26 +1,32 @@
 <x-layout>
     <x-ui.card
         back-url="{{route('admin.halls.index')}}"
-        title="Plán sálu: {{ $hall->name }}"
+        title="Upravit sál: {{ $hall->name }}"
     >
-        <div class="flex flex-col gap-1 items-center p-8 bg-slate-950">
-            <x-halls.legend />
+        <div class="flex flex-col items-center p-8 bg-slate-950">
+            <div class="mb-10 w-full flex justify-center">
+                <x-halls.legend />
+            </div>
             @foreach($rows as $rowNumber => $seatsInRow)
-                <div class="flex gap-1 items-center">
+                <div class="flex gap- items-center">
                     <span class="text-slate-500 text-xs w-4">{{$rowNumber}}</span>
-                    @foreach($seatsInRow as $seat)
-                        @php
-                            $classes = match($seat->type->value) {
-                                'vip' => 'bg-yellow-500',
-                                'disabled' => 'bg-red-800',
-                                default => 'bg-gray-300',
-                            };
-                        @endphp
-                        <button
-                            title="Řada {{ $rowNumber }}, Sedadlo {{ $seat->column }}"
-                            class="w-8 h-8 hover:bg-slate-500/50 border border-slate-700 {{$classes}}">
-                        </button>
-                    @endforeach
+                    <div class="flex gap-1 items-center">
+                        @foreach($seatsInRow as $seat)
+                            @php
+                                $baseClass = 'w-8 h-8 rounded transition-all cursor-pointer';
+                                $class = $baseClass ." ". match($seat->type->value) {
+                                    'vip' => 'bg-yellow-500',
+                                    'disabled' => 'bg-red-800',
+                                    default => 'bg-gray-200',
+                                };
+                            @endphp
+                            <div>
+                                <button class="{{ $class }}"
+                                        title="Řada {{ $rowNumber }}, Sedadlo {{ $seat->column }}">
+                                </button>
+                            </div>
+                        @endforeach
+                    </div>
                     <span class="text-slate-500 text-xs w-4 text-right">{{$rowNumber}}</span>
                 </div>
             @endforeach
@@ -29,7 +35,6 @@
                 <p class="text-md text-slate-600 uppercase tracking-wider mt-3">Plátno</p>
                 <x-ui.action-button :href="route('admin.halls.index')" class="mt-6">Zpět na seznam</x-ui.action-button>
             </div>
-
         </div>
     </x-ui.card>
 </x-layout>

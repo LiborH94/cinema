@@ -3,6 +3,16 @@
         back-url="{{route('admin.index')}}"
         title="Přehled sálů"
     >
+
+        <div class="flex justify-between items-center mb-8">
+            <div class="flex flex-col">
+                <h3 class="text-xl font-bold text-stone-200">Seznam sálů</h3>
+                <p class="text-sm text-gray-500">Celkem sálů: {{ $halls->count() }}</p>
+            </div>
+            <x-ui.action-button :href="route('admin.halls.create')">
+                + Přidat nový sál
+            </x-ui.action-button>
+        </div>
         @if($halls->isEmpty())
             <div class="p-8 text-center">
                 <h2 class="text-xl font-bold text-gray-500">Zatím zde nejsou žádné položky</h2>
@@ -54,11 +64,6 @@
                 </table>
             </div>
         @endif
-
-        <div class="p-4 border-t border-t-gray-600 bg-slate-850 text-center">
-            <x-ui.action-button :href="route('admin.halls.create')">
-                + Vytvořit nový sál
-            </x-ui.action-button>
-        </div>
+        <x-ui.line class="my-8" />
     </x-ui.card>
 </x-layout>

@@ -36,10 +36,9 @@ class Play extends Model
     public function freeSeatsCount()
     {
         $total = $this->hall->seats()->count();
-
-        // $this->tickets()->count();
-        $occupied = 0;
-        return $total - $occupied;
+        $occupied = $this->tickets()->count();
+        $inCarts = $this->cartItems()->count();
+        return $total - ($occupied + $inCarts);
     }
 
     public function hall(): BelongsTo

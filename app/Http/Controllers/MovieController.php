@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
 
 class MovieController extends Controller
 {
-    public function index()
+    public function show(Movie $movie)
     {
-        // TODO: udělat seznam dat a časů na daný film s možností prokliku na konkrétní představení
+        $movie->load(['plays.hall']);
+
+        return view('public.movies.show', [
+            'movie' => $movie,
+        ]);
     }
 }

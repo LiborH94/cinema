@@ -22,13 +22,11 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        // validate
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-        // create
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -41,32 +39,29 @@ class RegisteredUserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
-        //
+        return view('users.show', [
+            'user' => $user,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return view('users.edit', [
+            'user' => $user,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
-    }
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)]
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $user->update($validated);
+
+        return redirect(route('profile.show', $user))->with('status', 'Profil byl úspěšně aktualizován.');
     }
 }
