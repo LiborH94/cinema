@@ -21,7 +21,7 @@ A modern web application for cinema management and administration of halls, movi
 
 ## 🚀 Tech Stack
 
-- **Backend:** Laravel 11 (PHP 8.3) & `barryvdh/laravel-dompdf` for ticket generation
+- **Backend:** Laravel 13 (PHP 8.3) & `barryvdh/laravel-dompdf` for ticket generation
 - **Frontend:** Blade templates, Tailwind CSS & Alpine.js
 - **Local Development:** Laravel Herd
 - **Testing Suite:** Pest Framework
