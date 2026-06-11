@@ -1,12 +1,21 @@
-@if (session()->has('status') || session()->has('success') || session()->has('error') || $errors->any())
+@php
+    $errorsInstance = isset($errors) ? $errors : new Illuminate\Support\MessageBag();
+    $hasErrors = $errorsInstance->any();
+
+    $hasStatus = session()->has('status');
+    $hasSuccess = session()->has('success');
+    $hasError = session()->has('error');
+@endphp
+
+@if ($hasStatus || $hasSuccess || $hasError || $hasErrors)
     @php
-        $isError = session()->has('error') || $errors->any();
+        $isError = $hasError || $hasErrors;
 
         $borderColor = $isError ? 'border-red-500/30' : 'border-emerald-500/30';
         $iconBg = $isError ? 'bg-red-500/20' : 'bg-emerald-500/20';
         $iconColor = $isError ? 'text-red-400' : 'text-emerald-400';
 
-        $message = $errors->any() ? $errors->first() : (session('status') ?? session('success') ?? session('error'));
+        $message = $hasErrors ? $errorsInstance->first() : (session('status') ?? session('success') ?? session('error'));
     @endphp
 
     <div
@@ -23,7 +32,6 @@
         text-white px-6 py-3"
     >
         <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
-
             <div class="flex items-center space-x-3">
                 <div class="{{ $iconBg }} {{ $iconColor }} p-2 rounded-lg shrink-0">
                     @if($isError)
@@ -36,12 +44,10 @@
                         </svg>
                     @endif
                 </div>
-
                 <p class="text-md text-slate-200 font-medium">
                     {{ $message }}
                 </p>
             </div>
-
             <button
                 @click="show = false"
                 class="text-slate-500 hover:text-slate-300 transition-colors p-1 rounded-md hover:bg-slate-800 shrink-0 cursor-pointer"
