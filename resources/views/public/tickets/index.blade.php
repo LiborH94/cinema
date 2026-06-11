@@ -37,11 +37,11 @@
                             </div>
                         </div>
 
-                        <div class="my-4 flex justify-start gap-3">
-                            <x-ui.action-button :href="route('public.tickets.download_play', $play)">
-                                Stáhnout v PDF
-                            </x-ui.action-button>
-                        </div>
+{{--                        <div class="my-4 flex justify-start gap-3">--}}
+{{--                            <x-ui.action-button :href="route('public.tickets.download_play', $play)">--}}
+{{--                                Stáhnout v PDF--}}
+{{--                            </x-ui.action-button>--}}
+{{--                        </div>--}}
 
                         <div class="mt-4">
                             <span class="text-xs text-slate-500 block uppercase font-bold tracking-wider mb-2">Vaše sedadla (kliknutím otevřete detail)</span>

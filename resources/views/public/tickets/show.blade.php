@@ -67,9 +67,9 @@
                     &larr; Zpět na seznam lístků
                 </a>
 
-                <x-ui.action-button :href="route('public.tickets.downloadOne', $ticket)">
-                    Stáhnout PDF
-                </x-ui.action-button>
+{{--                <x-ui.action-button :href="route('public.tickets.downloadOne', $ticket)">--}}
+{{--                    Stáhnout PDF--}}
+{{--                </x-ui.action-button>--}}
             </div>
 
         </div>
