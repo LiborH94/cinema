@@ -6,6 +6,7 @@ use App\Models\User;
 use App\UserRole;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        URL::forceScheme('https');
         Model::shouldBeStrict();
         Model::automaticallyEagerLoadRelationships();
 
