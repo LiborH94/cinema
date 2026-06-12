@@ -13,7 +13,7 @@ A modern web application for cinema management and administration of halls, movi
 <br />
 <img src="https://github.com/user-attachments/assets/ecd2d807-28fe-4e5c-a715-a3992e4bf5ec" alt="Admin Dashboard 2" width="700" />
 
-### 🎟️ Ticket Delivery & PDF Generation (with QR Code)
+### 🎟️ Ticket Delivery & QR code Generation
 <br />
 <img src="https://github.com/user-attachments/assets/ce440cbb-09b5-4ef2-9ea1-8bb57caf0b10" alt="Ticket PDF 2" width="700" />
 
