@@ -59,7 +59,7 @@
                                         </td>
 
                                         <td class="p-3 text-center py-4">
-                                            @if($ticket->is_vip)
+                                            @if($ticket->seat->type === \App\SeatType::VIP)
                                                 <span class="inline-block bg-amber-500/10 text-amber-500 text-xs px-2 py-0.5 rounded font-bold uppercase border border-amber-500/20">
                                                         VIP
                                                     </span>
