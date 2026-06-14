@@ -55,7 +55,7 @@
                                         </td>
 
                                         <td class="p-3 text-slate-300 py-4">
-                                            Řada {{ $ticket->row }}, Místo {{ $ticket->number ?? $ticket->seat_number }}
+                                            Řada {{ $ticket->seat->row }}, Místo {{ $ticket->seat->column }}
                                         </td>
 
                                         <td class="p-3 text-center py-4">

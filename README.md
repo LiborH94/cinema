@@ -13,7 +13,7 @@ A modern web application for cinema management and administration of halls, movi
 <br />
 <img src="https://github.com/user-attachments/assets/ecd2d807-28fe-4e5c-a715-a3992e4bf5ec" alt="Admin Dashboard 2" width="700" />
 
-### 🎟️ Ticket Delivery & PDF Generation (with QR Code)
+### 🎟️ Ticket Delivery & QR code Generation
 <br />
 <img src="https://github.com/user-attachments/assets/ce440cbb-09b5-4ef2-9ea1-8bb57caf0b10" alt="Ticket PDF 2" width="700" />
 
@@ -32,7 +32,7 @@ A modern web application for cinema management and administration of halls, movi
 
 - **Complete Admin CRUD:** Seamless management of cinema halls, movies, plays and tickets.
 - **Advanced Security & Middleware:** Custom `CheckProfileAccess` middleware protecting user data against unauthorized access, alongside strict Admin/User role separation.
-- **Automated Ticket PDF Generation:** Upon successful reservation, the system generates a secure PDF ticket. Every ticket features a unique QR code generated from its secure UUID, ready for electronic scanning at the cinema entrance.
+- **Automated Ticket QR code Generation:** Every ticket features a unique QR code generated from its secure UUID, ready for electronic scanning at the cinema entrance.
 - **UUID & ID Enumeration Protection:** The system uses secure UUIDs instead of auto-incrementing IDs, and returns a `404 Not Found` instead of a `403 Forbidden` for unauthorized requests. This completely prevents attackers from testing and trying to find out which IDs exist in the database and which do not.
 - **Robust Testing:** High test coverage of critical paths using Feature tests, DB seeders, and factories for realistic data generation.
 

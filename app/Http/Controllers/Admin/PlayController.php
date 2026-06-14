@@ -62,7 +62,7 @@ class PlayController extends Controller
     public function show (Play $play)
     {
         $play->loadCount('tickets');
-        $play->load(['movie', 'hall', 'tickets']);
+        $play->load(['movie', 'hall', 'tickets.seat', 'tickets.user']);
 
         $seatsCountTotal = $play->hall->seats()->count();
         $totalRevenue = $play->tickets()->sum('price_paid');
